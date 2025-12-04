@@ -1,127 +1,106 @@
-# Low Level Design — Java Notes and Examples
+# Java Low-Level Design
 
-A complete Java reference for Low Level Design concepts, design patterns, and system design problems.
+A Maven-based Java reference for object-oriented design fundamentals, design patterns, and interview-oriented low-level design case studies. Implementations use plain Java and remain intentionally independent so each example can be studied and run on its own.
 
-All code is written in Java using plain OOP. Each folder contains:
+## Repository layout
 
-- A `README.md` with concept explanations, design decisions, and interview notes
-- Java source files with working, runnable examples
-
----
-
-## Topics
-
-| # | Folder | Topic | Description |
-|---|---|---|---|
-| 01 | `src/_01_solid` | SOLID Principles | All five principles + OOP fundamentals (classes, inheritance, encapsulation, abstraction) |
-| 02 | `src/_02_singleton` | Singleton Pattern | Eager, lazy, double-checked, Bill Pugh; ResourceInitializer/DB connection example |
-| 03 | `src/_03_builder` | Builder Pattern | Bird/Booking examples; backward compatibility; static inner Builder |
-| 04 | `src/_04_factory` | Factory Pattern | Address validator example; country→Validator mapping; runtime polymorphism |
-| 05 | `src/_05_prototype` | Prototype Pattern | Cloning objects, shallow vs deep copy |
-| 06 | `src/_06_adapter_strategy` | Adapter + Strategy | Adapting incompatible interfaces; swapping algorithms |
-| 07 | `src/_07_observer_decorator` | Observer + Decorator | Event-driven notifications; wrapping behavior |
-| 08 | `src/_08_uml_diagrams` | UML Diagrams | Class diagrams, sequence diagrams, use case diagrams, actors, system boundary |
-| 09 | `src/_09_lld_interview_approach` | Interview Approach | 5-step framework; Coffee Machine walkthrough; pattern selection guide |
-| 10 | `src/_10_design_tictactoe` | TicTacToe — Design | Entities, class diagram, game flow |
-| 11 | `src/_11_code_tictactoe` | TicTacToe — Code | Full interactive Java implementation |
-| 12 | `src/_12_design_parking_lot` | Parking Lot — Design | Multi-floor lot, slots, tickets, fees |
-| 13 | `src/_13_code_parking_lot` | Parking Lot — Code | Complete Java implementation with Strategy for fees |
-| 14 | `src/_14_design_bookmyshow` | BookMyShow — Design | Full class diagram (CinemaBrand→HallSeat→ShowSeat); DB schema; seat locking |
-| 15 | `src/_15_code_bookmyshow` | BookMyShow — Code | Full Java with synchronized seat locking + Builder |
-| 16 | `src/_16_design_splitwise` | Splitwise — Design | Equal/exact/percentage splits; balance map; simplify debts; machine coding format |
-| 17 | `src/_17_code_splitwise` | Splitwise — Code | Complete expense splitting with balance tracking |
-| 18 | `src/_18_design_google_calendar` | Google Calendar — Design | Events, attendees, RSVP, conflict detection |
-| 19 | `src/_19_lld_contest` | Practice Problems | Vending Machine, Library, Elevator, ATM, StackOverflow, Hotel Management |
-| 20 | `src/_20_low_level_design_revision` | Revision Guide | Complete cheatsheet: all patterns, system designs, DB schema, vocab |
-| 21 | `src/_21_chain_of_responsibility` | Chain of Responsibility | Cascader pattern; ValidatorCascadeFactory; fail-fast; Singleton+Factory combo |
-| 22 | `src/_22_state_pattern` | State Pattern | Vending Machine states; behavior changes with internal state |
-| 23 | `src/_23_command_pattern` | Command Pattern | Text editor with undo/redo; encapsulating requests as objects |
-| 24 | `src/_24_template_method` | Template Method | Fixed algorithm skeleton; CSV/JSON processors; hook methods |
-| 25 | `src/_25_abstract_factory` | Abstract Factory | Cross-platform UI; families of related objects; factory of factories |
-| 26 | `src/_26_design_stackoverflow` | StackOverflow — Design | Question/Answer/Comment/Bounty/Badge; Member/Moderator/Admin hierarchy |
-| 27 | `src/_27_design_hotel_management` | Hotel Management — Design | HotelBrand/Branch/Room/RoomKey; housekeeping; invoice; search interface |
-
----
-
-## SOLID Principles — Sub-folders
-
-| Sub-folder | Principle | Example |
-|---|---|---|
-| `_01_s_single_responsibility` | Single Responsibility | Invoice split into Calculator, Printer, Repository |
-| `_02_o_open_closed` | Open/Closed | Discount policies as separate classes |
-| `_03_l_liskov_substitution` | Liskov Substitution | Bird hierarchy with FlyingBird abstraction |
-| `_04_i_interface_segregation` | Interface Segregation | Restaurant roles: Cook, Server, Cleaner |
-| `_05_d_dependency_inversion` | Dependency Inversion | OrderService depends on OrderRepository interface |
-
----
-
-## Design Patterns Quick Reference
-
-| Pattern | Type | Key Idea |
-|---|---|---|
-| Singleton | Creational | One instance, controlled access point |
-| Builder | Creational | Step-by-step construction, optional fields, backward compatible |
-| Factory | Creational | Central object creation by type; almost always Singleton |
-| Prototype | Creational | Clone existing objects (shallow vs deep) |
-| Abstract Factory | Creational | Create families of related objects; factory of factories |
-| Adapter | Structural | Wrap incompatible interface |
-| Decorator | Structural | Add behavior by wrapping |
-| Strategy | Behavioral | Inject and swap algorithms at runtime |
-| Observer | Behavioral | Notify multiple listeners on state change |
-| Chain of Responsibility | Behavioral | Pass request through ordered handlers; fail-fast |
-| State | Behavioral | Object behavior changes with internal state |
-| Command | Behavioral | Encapsulate request as object; supports undo/redo |
-| Template Method | Behavioral | Fixed algorithm skeleton; subclasses customize specific steps |
-
----
-
-## How To Run Any Example
-
-All examples can be compiled and run from the `src` directory.
-
-### From the command line
-
-```bash
-cd src
-javac _21_chain_of_responsibility/*.java
-java _21_chain_of_responsibility.Main
+```text
+.
+|-- src/
+|   |-- main/java/com/denny/lld/
+|   |   |-- fundamentals/
+|   |   |-- patterns/
+|   |   |   |-- creational/
+|   |   |   |-- structural/
+|   |   |   `-- behavioral/
+|   |   `-- projects/
+|   `-- test/java/com/denny/lld/
+|-- docs/
+|-- pom.xml
+`-- README.md
 ```
 
-### From IntelliJ IDEA
+The Java package tree is organized by concept. The `docs` tree retains the numbered course topic names for traceability and keeps design-only case studies separate from working implementations.
 
-Open any `Main.java` file and click the green run button. Set project SDK to Java 11 or higher.
+## Fundamentals
 
----
+- [SOLID principles](docs/_01_solid/README.md), with an example for each principle
+- [UML diagrams](docs/_08_uml_diagrams/README.md)
+- [LLD interview approach](docs/_09_lld_interview_approach/README.md)
+- [Revision guide](docs/_20_low_level_design_revision/README.md)
 
-## Running All New Pattern Examples
+## Design patterns
+
+| Category | Patterns |
+|---|---|
+| Creational | [Singleton](docs/_02_singleton/README.md), [Builder](docs/_03_builder/README.md), [Factory](docs/_04_factory/README.md), [Prototype](docs/_05_prototype/README.md), [Abstract Factory](docs/_25_abstract_factory/README.md) |
+| Structural | [Adapter](docs/_06_adapter_strategy/README.md), [Decorator](docs/_07_observer_decorator/README.md) |
+| Behavioral | [Strategy](docs/_06_adapter_strategy/README.md), [Observer](docs/_07_observer_decorator/README.md), [Chain of Responsibility](docs/_21_chain_of_responsibility/README.md), [State](docs/_22_state_pattern/README.md), [Command](docs/_23_command_pattern/README.md), [Template Method](docs/_24_template_method/README.md) |
+
+The historical `_06_adapter_strategy` and `_07_observer_decorator` documentation remains combined, while their Java implementations are separated into the correct pattern packages.
+
+## LLD case studies
+
+| Case study | Design documentation | Java implementation |
+|---|---|---|
+| Tic-Tac-Toe | [Design](docs/_10_design_tictactoe/README.md) | `com.denny.lld.projects.tictactoe` ([notes](docs/_11_code_tictactoe/README.md)) |
+| Parking Lot | [Design](docs/_12_design_parking_lot/README.md) | `com.denny.lld.projects.parkinglot` ([notes](docs/_13_code_parking_lot/README.md)) |
+| BookMyShow | [Design](docs/_14_design_bookmyshow/README.md) | `com.denny.lld.projects.bookmyshow` ([notes](docs/_15_code_bookmyshow/README.md)) |
+| Splitwise | [Design](docs/_16_design_splitwise/README.md) | `com.denny.lld.projects.splitwise` ([notes](docs/_17_code_splitwise/README.md)) |
+| Google Calendar | [Design](docs/_18_design_google_calendar/README.md) | Not implemented |
+| Practice contest | [Problems](docs/_19_lld_contest/README.md) | Not implemented |
+| Stack Overflow | [Design](docs/_26_design_stackoverflow/README.md) | Not implemented |
+| Hotel Management | [Design](docs/_27_design_hotel_management/README.md) | Not implemented |
+
+## Build and run
+
+Java 17 or newer and Maven 3.8+ are recommended.
 
 ```bash
-cd src
-
-# Chain of Responsibility (Cascader)
-javac _21_chain_of_responsibility/*.java && java _21_chain_of_responsibility.Main
-
-# State Pattern
-javac _22_state_pattern/*.java && java _22_state_pattern.Main
-
-# Command Pattern
-javac _23_command_pattern/*.java && java _23_command_pattern.Main
-
-# Template Method
-javac _24_template_method/*.java && java _24_template_method.Main
-
-# Abstract Factory
-javac _25_abstract_factory/*.java && java _25_abstract_factory.Main
+mvn clean test
+mvn package
 ```
 
----
+After compiling, run an example with its fully qualified class name:
 
-## Java Version
+```bash
+java -cp target/classes com.denny.lld.patterns.structural.adapter.AdapterDemo
+java -cp target/classes com.denny.lld.patterns.behavioral.strategy.StrategyDemo
+java -cp target/classes com.denny.lld.projects.parkinglot.Main
+```
 
-Examples use Java 11+ features (`List.of()`, `Set.of()`, etc.). All packages compile cleanly with Java 21.
+In IntelliJ IDEA, import the root `pom.xml`, select a Java 17+ SDK, reload the Maven project, and run any demo or `Main` class from the editor.
 
----
+## Old-to-new mapping
 
-## Notes
+| Original topic | Java package or documentation location |
+|---|---|
+| `_01_solid` | `com.denny.lld.fundamentals.solid.*`; `docs/_01_solid` |
+| `_02_singleton` | `com.denny.lld.patterns.creational.singleton`; `docs/_02_singleton` |
+| `_03_builder` | `com.denny.lld.patterns.creational.builder`; `docs/_03_builder` |
+| `_04_factory` | `com.denny.lld.patterns.creational.factory`; `docs/_04_factory` |
+| `_05_prototype` | `com.denny.lld.patterns.creational.prototype`; `docs/_05_prototype` |
+| `_06_adapter_strategy` | `com.denny.lld.patterns.structural.adapter`, `com.denny.lld.patterns.behavioral.strategy`; `docs/_06_adapter_strategy` |
+| `_07_observer_decorator` | `com.denny.lld.patterns.behavioral.observer`, `com.denny.lld.patterns.structural.decorator`; `docs/_07_observer_decorator` |
+| `_08_uml_diagrams` | `docs/_08_uml_diagrams` |
+| `_09_lld_interview_approach` | `docs/_09_lld_interview_approach` |
+| `_10_design_tictactoe` | `docs/_10_design_tictactoe` |
+| `_11_code_tictactoe` | `com.denny.lld.projects.tictactoe`; `docs/_11_code_tictactoe` |
+| `_12_design_parking_lot` | `docs/_12_design_parking_lot` |
+| `_13_code_parking_lot` | `com.denny.lld.projects.parkinglot`; `docs/_13_code_parking_lot` |
+| `_14_design_bookmyshow` | `docs/_14_design_bookmyshow` |
+| `_15_code_bookmyshow` | `com.denny.lld.projects.bookmyshow`; `docs/_15_code_bookmyshow` |
+| `_16_design_splitwise` | `docs/_16_design_splitwise` |
+| `_17_code_splitwise` | `com.denny.lld.projects.splitwise`; `docs/_17_code_splitwise` |
+| `_18_design_google_calendar` | `docs/_18_design_google_calendar` |
+| `_19_lld_contest` | `docs/_19_lld_contest` |
+| `_20_low_level_design_revision` | `docs/_20_low_level_design_revision` |
+| `_21_chain_of_responsibility` | `com.denny.lld.patterns.behavioral.chainofresponsibility`; `docs/_21_chain_of_responsibility` |
+| `_22_state_pattern` | `com.denny.lld.patterns.behavioral.state`; `docs/_22_state_pattern` |
+| `_23_command_pattern` | `com.denny.lld.patterns.behavioral.command`; `docs/_23_command_pattern` |
+| `_24_template_method` | `com.denny.lld.patterns.behavioral.templatemethod`; `docs/_24_template_method` |
+| `_25_abstract_factory` | `com.denny.lld.patterns.creational.abstractfactory`; `docs/_25_abstract_factory` |
+| `_26_design_stackoverflow` | `docs/_26_design_stackoverflow` |
+| `_27_design_hotel_management` | `docs/_27_design_hotel_management` |
 
-All code and written notes are original and written for learning purposes. Design patterns (Singleton, Factory, Builder, etc.) are standard computer science concepts in the public domain.
+Detailed explanations and interview notes are preserved in the corresponding files under `docs`.
